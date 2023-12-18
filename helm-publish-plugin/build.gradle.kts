@@ -30,7 +30,7 @@ gradlePlugin {
 
     plugins {
         create("helmPublishPlugin") {
-            id = "org.unbroken-dome.helm-publish"
+            id = "com.redcompass.helm.helm-publish"
             implementationClass = "org.unbrokendome.gradle.plugins.helm.publishing.HelmPublishPlugin"
             displayName = "Helm Publish Plugin"
             description = "A Gradle plugin for publishing Helm charts to repositories."

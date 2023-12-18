@@ -17,8 +17,7 @@ import org.unbrokendome.gradle.plugins.helm.dsl.credentials.internal.Serializabl
 import org.unbrokendome.gradle.plugins.helm.dsl.credentials.internal.SerializablePasswordCredentials
 import java.io.File
 import java.net.URI
-
-
+import java.time.Duration
 /**
  * Publishes Helm charts to a remote repository using HTTP.
  */
@@ -72,7 +71,6 @@ internal abstract class AbstractHttpHelmChartPublisher(
         )
 
         val httpClient = createHttpClient()
-
         val request = Request.Builder().run {
             url(uploadUrl.toHttpUrl())
             method(uploadMethod, requestBody(chartFile))
@@ -106,6 +104,9 @@ internal abstract class AbstractHttpHelmChartPublisher(
                     }
                 }
             }
+               connectTimeout(Duration.ofMinutes(5))
+               readTimeout(Duration.ofMinutes(5))
+               writeTimeout(Duration.ofMinutes(5))
 
             build()
         }
